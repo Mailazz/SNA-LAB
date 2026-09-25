@@ -1,48 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SNA Lab Restricted</title>
+  <title>SNA Lab Role Segmentation</title>
 
-    <script>
-        function login() {
-            const user = document.getElementById("username").value;
-            const pass = document.getElementById("password").value;
+  <script>
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
 
-            const accounts = {
-                "pc1": "dns123",
-                "pc2": "web123",
-                "pc3": "client123",
-                "pc4": "monitor123"
-            };
+      const accounts = {
+        "pc1": "dns123",
+        "pc2": "web123",
+        "pc3": "client123",
+        "pc4": "monitor123"
+      };
 
-            if (accounts[user] === pass) {
-                document.body.innerHTML =
-                    "<h1>Welcome " + user + "!</h1>" +
-                    "<p>You have access to the SNA Lab site.</p>";
-            } else {
-                alert("Access Denied");
-            }
+      if (accounts[user] === pass) {
+
+        if (user === "pc1") {
+          document.body.innerHTML =
+            "<h1>DNS Role</h1>" +
+            "<p>Edit hosts file, run ping and nslookup.</p>";
+
+        } else if (user === "pc2") {
+          document.body.innerHTML =
+            "<h1>Web Server Role</h1>" +
+            "<p>Deploy site and verify uptime.</p>";
+
+        } else if (user === "pc3") {
+          document.body.innerHTML =
+            "<h1>Client Role</h1>" +
+            "<p>Access site and run tracert.</p>";
+
+        } else if (user === "pc4") {
+          document.body.innerHTML =
+            "<h1>Monitoring Role</h1>" +
+            "<p>Capture traffic with Wireshark or DevTools.</p>";
         }
-    </script>
+
+      } else {
+        alert("Access Denied");
+      }
+    }
+  </script>
 </head>
 
 <body>
-    <h2>Restricted Access Login</h2>
 
-    <label>
-        Username:
-        <input type="text" id="username">
-    </label>
+  <h2>Restricted Access Login</h2>
 
-    <br>
+  <label>
+    Username:
+    <input type="text" id="username">
+  </label>
 
-    <label>
-        Password:
-        <input type="password" id="password">
-    </label>
+  <br><br>
 
-    <br>
+  <label>
+    Password:
+    <input type="password" id="password">
+  </label>
 
-    <button onclick="login()">Login</button>
+  <br><br>
+
+  <button onclick="login()">Login</button>
+
 </body>
 </html>
